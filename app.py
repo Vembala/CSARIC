@@ -11,4 +11,4 @@ def camera():
     camera.
     """
 
-    return flask.render_template("html/camera.html")
+    return flask.render_template("camera.html")
