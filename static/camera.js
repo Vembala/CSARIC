@@ -13,6 +13,9 @@ const constraints = window.constraints = {
   video: true
 };
 
+let imageCanvas = document.createElement('canvas');
+let imageContext = imageCanvas.getContext("2d");
+
 function handleSuccess(stream) {
   const video = document.querySelector('video');
   const videoTracks = stream.getVideoTracks();
@@ -21,8 +24,6 @@ function handleSuccess(stream) {
   window.stream = stream; // make variable available to browser console
   video.srcObject = stream;
 
-  let imageCanvas = document.createElement('canvas');
-  let imageContext = imageCanvas.getContext("2d");
   imageContext.drawImage(video, 0, 0);
   imageCanvas.toBlob(postFile, "image/jpeg");
 }
