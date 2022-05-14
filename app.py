@@ -23,6 +23,7 @@ def image():
     Return POST data.
     """
 
-    image_file = request.files['image']
+    image_file = flask.request.files['image']
+    print(type(image_file))
 
-app.run()
+app.run(debug=True)
