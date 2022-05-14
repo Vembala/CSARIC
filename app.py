@@ -25,5 +25,7 @@ def image():
 
     image_file = flask.request.files['image']
     print(type(image_file))
+    
+    return 'ok'
 
-app.run(debug=True)
+app.run()
