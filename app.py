@@ -1,8 +1,8 @@
 import flask
-import flas_ngrok
+import flask_ngrok
 
 app = flask.Flask(__name__)
-app = flas_ngrok.run_with_ngrok(app)
+app = flask_ngrok.run_with_ngrok(app)
 
 @app.route("/")
 def camera():
@@ -14,3 +14,5 @@ def camera():
     """
 
     return flask.render_template("camera.html")
+
+app.run()
