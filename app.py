@@ -15,4 +15,14 @@ def camera():
 
     return flask.render_template("camera.html")
 
+@app.route("/image", methods=["POST"])
+def image():
+
+    """image
+
+    Return POST data.
+    """
+
+    image_file = request.files['image']
+
 app.run()

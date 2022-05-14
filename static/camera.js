@@ -20,6 +20,38 @@ function handleSuccess(stream) {
   console.log(`Using video device: ${videoTracks[0].label}`);
   window.stream = stream; // make variable available to browser console
   video.srcObject = stream;
+
+  let imageCanvas = document.createElement('canvas');
+  let imageContext = imageCanvas.getContext("2d");
+  imageContext.drawImage(video, 0, 0);
+  imageCanvas.toBlob(postFile, "image/jpeg");
+}
+
+function postFile(file) {
+ 
+  //Set options as form data
+  let formdata = new FormData();
+  formdata.append("image", file);
+  formdata.append("threshold", scoreThreshold);
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', window.location.origin + '/image', true);
+  xhr.onload = function () {
+      if (this.status === 200) {
+          let objects = JSON.parse(this.response);
+          //console.log(objects);
+
+          //draw the boxes
+          drawBoxes(objects);
+          
+          //Send the next image
+          imageCanvas.toBlob(postFile, 'image/jpeg');
+      }
+      else{
+          console.error(xhr);
+      }
+  };
+  xhr.send(formdata);
 }
 
 function handleError(error) {
