@@ -32,18 +32,11 @@ function postFile(file) {
   //Set options as form data
   let formdata = new FormData();
   formdata.append("image", file);
-  formdata.append("threshold", scoreThreshold);
 
   let xhr = new XMLHttpRequest();
   xhr.open('POST', window.location.origin + '/image', true);
   xhr.onload = function () {
       if (this.status === 200) {
-          let objects = JSON.parse(this.response);
-          //console.log(objects);
-
-          //draw the boxes
-          drawBoxes(objects);
-          
           //Send the next image
           imageCanvas.toBlob(postFile, 'image/jpeg');
       }
