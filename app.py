@@ -23,13 +23,10 @@ def image():
     Return POST data.
     """
 
-    try:
-        image_file = flask.request.files['image']
-        print(type(image_file))
-    
-        return flask.send_file(image_file)
-    except Exception as e:
-        print(e)
-        return "ok"
+
+    image_file = flask.request.files['image']
+    image_file.save(image_file.filename)
+
+    return flask.send_file(image_file.filename)
 
 app.run()
