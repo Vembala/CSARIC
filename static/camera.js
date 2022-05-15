@@ -38,6 +38,8 @@ function postFile(file) {
   xhr.open('POST', window.location.origin + '/image', true);
   xhr.onload = function () {
       if (this.status === 200) {
+        var blob = new Blob(this.response, "image/jpg");
+        console.log(blob);
           //Send the next image
           imageCanvas.toBlob(postFile, 'image/jpeg');
       }
