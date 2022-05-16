@@ -4,6 +4,7 @@ import flask_ngrok
 app = flask.Flask(__name__)
 flask_ngrok.run_with_ngrok(app)
 
+
 @app.route("/")
 def camera():
 
@@ -25,8 +26,8 @@ def image():
 
 
     image_file = flask.request.files['image']
-    image_file.save("image.jpg")
+    image_file.save(image_file.filename)
 
-    return flask.send_file("image.jpg", mimetype="image/jpg")
+    return flask.send_file(image_file.filename)
 
 app.run()
