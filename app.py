@@ -25,8 +25,8 @@ def image():
 
 
     image_file = flask.request.files['image']
-    image_file.save(image_file.filename)
+    image_file.save("image.jpg")
 
-    return flask.send_file(image_file.filename)
+    return flask.send_file("image.jpg", mimetype="image/jpg")
 
 app.run()
