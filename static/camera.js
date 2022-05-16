@@ -38,9 +38,9 @@ function postFile(file) {
   xhr.open('POST', window.location.origin + '/image', true);
   xhr.onload = function () {
       if (this.status === 200) {
-        //var blob = new Blob([this.response]);
+        var blob = new Blob([this.response]); // https://stackoverflow.com/questions/27120757/failed-to-execute-createobjecturl-on-url
         var urlCreator = window.URL || window.webkitURL;
-        var imageURL = urlCreator.createObjectURL(this.response);
+        var imageURL = urlCreator.createObjectURL(blob);
         document.querySelector("#image").src =imageURL;
         console.log(blob);
           //Send the next image
